@@ -4,7 +4,7 @@ A package for freehand use on whiteboard.
 
 ## Feature
 
-* Save whiteboard as PNG
+* Save whiteboard as Image
 * Undo
 * Redo
 * Eraser mode
@@ -27,7 +27,7 @@ WhiteBoard(
     strokeColor: Colors.green,
     // For Eraser mode
     isErasing: false,
-    // Save image as PNG
+    // Save image
     onConvertImage: (list){},
     // Callback common for redo or undo
     onRedoUndo: (t,m){},
@@ -40,7 +40,7 @@ WhiteBoard(
 WhiteBoardController whiteBoardController =WhiteBoardController();
 // Clear all the strokes
 whiteBoardController.clear();
-// Convert Whiteboard into png
+// Convert Whiteboard into file
 whiteBoardController.convertToImage();
 // Redo last stroke
 whiteBoardController.redo();

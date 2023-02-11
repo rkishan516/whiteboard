@@ -1,4 +1,5 @@
 part of whiteboard;
+
 /// Subclass of [CustomPainter] to paint strokes
 class _FreehandPainter extends CustomPainter {
   final List<_Stroke> strokes;

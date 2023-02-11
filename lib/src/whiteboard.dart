@@ -50,8 +50,8 @@ class _WhiteBoardState extends State<WhiteBoard> {
   // cached current canvas size
   late Size _canvasSize;
 
-  // convert current canvas to png image data.
-  Future<void> _convertToPng() async {
+  // convert current canvas to image data.
+  Future<void> _convertToImage(ImageByteFormat format) async {
     final recorder = PictureRecorder();
     final canvas = Canvas(recorder);
 
@@ -67,10 +67,9 @@ class _WhiteBoardState extends State<WhiteBoard> {
         .endRecording()
         .toImage(_canvasSize.width.floor(), _canvasSize.height.floor());
 
-    // Cast image data to byte array with converting to png format
-    final converted = (await result.toByteData(format: ImageByteFormat.png))!
-        .buffer
-        .asUint8List();
+    // Cast image data to byte array with converting to given format
+    final converted =
+        (await result.toByteData(format: format))!.buffer.asUint8List();
 
     widget.onConvertImage?.call(converted);
   }
@@ -78,7 +77,7 @@ class _WhiteBoardState extends State<WhiteBoard> {
   @override
   void initState() {
     widget.controller?._delegate = _WhiteBoardControllerDelegate()
-      ..saveAsPNG = _convertToPng
+      ..saveAsImage = _convertToImage
       ..onUndo = () {
         if (_undoHistory.isEmpty) return false;
 

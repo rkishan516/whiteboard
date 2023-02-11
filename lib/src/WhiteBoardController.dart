@@ -1,12 +1,13 @@
 part of whiteboard;
 
-/// Whiteboard controller for Undo, Redo, clear and saveAsPNG
+/// Whiteboard controller for Undo, Redo, clear and saveAsImage
 class WhiteBoardController {
   late _WhiteBoardControllerDelegate _delegate;
 
-  /// Convert [Whiteboard] into image data with png format.
+  /// Convert [Whiteboard] into image data with given format.
   /// You can obtain converted image data via [onConvert] property of [Crop].
-  void convertToImage() => _delegate.saveAsPNG();
+  void convertToImage({ImageByteFormat format = ImageByteFormat.png}) =>
+      _delegate.saveAsImage(format);
 
   /// Undo last stroke
   /// Return [false] if there is no stroke to undo, otherwise return [true].
@@ -21,7 +22,7 @@ class WhiteBoardController {
 }
 
 class _WhiteBoardControllerDelegate {
-  late VoidCallback saveAsPNG;
+  late Future<void> Function(ImageByteFormat format) saveAsImage;
 
   late bool Function() onUndo;
 

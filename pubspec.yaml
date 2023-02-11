@@ -1,6 +1,6 @@
 name: whiteboard
-description: A package for freehand use on whiteboard.
-version: 0.0.1
+description: A package for freehand use on whiteboard. This package provides a cross platform widget for drawing with controller.
+version: 0.0.2
 homepage: https://github.com/rkishan516/whiteboard
 
 environment:
