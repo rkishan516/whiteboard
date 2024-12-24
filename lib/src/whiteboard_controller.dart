@@ -1,12 +1,15 @@
-part of whiteboard;
+part of 'whiteboard.dart';
 
 /// Whiteboard controller for Undo, Redo, clear and saveAsImage
-class WhiteBoardController {
-  late _WhiteBoardControllerDelegate _delegate;
+class WhiteBoardController extends ChangeNotifier {
+  late WhiteBoardControllerDelegate _delegate;
+  WhiteBoardController();
+  WhiteBoardController.withDelegate(this._delegate);
 
   /// Convert [Whiteboard] into image data with given format.
   /// You can obtain converted image data via [onConvert] property of [Crop].
-  void convertToImage({ImageByteFormat format = ImageByteFormat.png}) =>
+  Future<Uint8List> convertToImage(
+          {ImageByteFormat format = ImageByteFormat.png}) =>
       _delegate.saveAsImage(format);
 
   /// Undo last stroke
@@ -21,12 +24,15 @@ class WhiteBoardController {
   void clear() => _delegate.onClear();
 }
 
-class _WhiteBoardControllerDelegate {
-  late Future<void> Function(ImageByteFormat format) saveAsImage;
-
+class WhiteBoardControllerDelegate {
+  WhiteBoardControllerDelegate({
+    required this.onClear,
+    required this.onRedo,
+    required this.onUndo,
+    required this.saveAsImage,
+  });
+  late Future<Uint8List> Function(ImageByteFormat format) saveAsImage;
   late bool Function() onUndo;
-
   late bool Function() onRedo;
-
   late VoidCallback onClear;
 }

@@ -1,12 +1,12 @@
-part of whiteboard;
+import 'package:flutter/material.dart';
 
-class _Stroke {
-  final path = Path();
+class WhiteBoardStroke {
+  final Path path = Path();
   final Color color;
   final double width;
   final bool erase;
 
-  _Stroke({
+  WhiteBoardStroke({
     this.color = Colors.black,
     this.width = 4,
     this.erase = false,

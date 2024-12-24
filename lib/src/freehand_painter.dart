@@ -1,11 +1,12 @@
-part of whiteboard;
+import 'package:flutter/material.dart';
+import 'package:whiteboard/src/models.dart';
 
 /// Subclass of [CustomPainter] to paint strokes
-class _FreehandPainter extends CustomPainter {
-  final List<_Stroke> strokes;
+class FreehandPainter extends CustomPainter {
+  final List<WhiteBoardStroke> strokes;
   final Color backgroundColor;
 
-  _FreehandPainter(
+  FreehandPainter(
     this.strokes,
     this.backgroundColor,
   );
